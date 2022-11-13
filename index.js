@@ -13,7 +13,6 @@ const auth = require('./routes/auth');
 const theater = require('./routes/theater');
 
 app.use(express.json());
-app
 
 
 
@@ -21,7 +20,7 @@ const PORT = 8080 || process.env.PORT;
 
 
 app.use('/api' ,  auth) ;
-// app.use('/api' , theater) ;
+app.use('/api' , theater) ;
 
 
 

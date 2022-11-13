@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema({
     seatBook : {
         type : [{
             screenName : {type : String} , 
-            seatBooked : [{type : Number}]
+            seatBooked : {type : Number}
         }]
     },
     
