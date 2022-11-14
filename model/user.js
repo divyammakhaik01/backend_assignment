@@ -21,13 +21,11 @@ const UserSchema = new mongoose.Schema({
       required: [true, "Please enter your password"],
     },
 
-    seatBook : {
-        type : [{
-            screenName : {type : String} , 
-            seatBooked : {type : Number}
-        }]
+    seatBook : [{ type: mongoose.Schema.ObjectId, ref: "movie_seat" }],
+    isAdmin : {
+      type : Boolean ,
+      require : true
     },
-    
     createdAt: {
       type: Date,
       default: Date.now,

@@ -44,21 +44,20 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    const { email, username, password } = req.body;
+    const { email, username, password , isAdmin} = req.body;
 
-    if (email == '' || username == '' || password == '') {
+    if (email === '' || username === '' || password === '' || isAdmin === '') {
       return res.json({
         status: "fasle",
         message: "email or username or password not found ",
       });
     }
 
-    // console.log("p1");
+
 
     const finduser = await User.find({
-      email: email,
       username: username,
-      password: password,
+      isAdmin : isAdmin 
     });
     // check whether user already registered
 
@@ -68,7 +67,9 @@ const register = async (req, res) => {
         message: "user already exist with this username or email",
       });
     }
-    const user = await User.create({ email , username, password });
+    const user = await User.create({ email , username, password , isAdmin });
+    console.log(user);
+
     const token = user.getJwtToken();
     res.status(201).json({ success: true, token: token });
   } catch (error) {
